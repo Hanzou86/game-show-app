@@ -11,7 +11,9 @@ const phrases = [
 ]
 
 startBtn.addEventListener('click', (event) => {
+    const startScreen = document.getElementById('overlay');
 
+    startScreen.style.display = 'none';
 
     function getRandomPhraseAsArray(arr) {
         const randomPhrase = arr[Math.floor(Math.random() * arr.length)];
@@ -25,14 +27,36 @@ startBtn.addEventListener('click', (event) => {
             const phraseArr = getRandomPhraseAsArray(arr);
             for (let i = 0; i < phraseArr.length; i++) {
                 const character = phraseArr[i];
-                if (typeof character === String) {
-                    console.log(character);
+                if (character === ' ') {
+                    character.className = 'space';
+                } else {
+                    character.className = 'letter';
                 }
-                // const charLi = li.appendChild(character);
-                // phraseUl.appendChild(charLi);
+                li.textContent = character;
+                phraseUl.appendChild(li);
             }
         
     }
     addPhraseToDisplay(phrases);
 
 });
+
+
+
+qwerty.addEventListener('change', (event) => {
+    const btn = event.target;
+    if (btn.tagName === 'BUTTON') {
+        function checkLetter(btn) {
+            const letters = document.querySelectorAll('.letter');
+            for (let i = 0; i < letters.length; i++) {
+                if (letters[i] === btn.textContent) {
+                    letters[i].parentNode.className = 'show';
+                } else {
+                    return null;
+                }
+            }
+        }
+        btn.className = 'chosen';
+        checkLetter(btn);
+    }
+})
