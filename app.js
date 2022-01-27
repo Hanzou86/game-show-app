@@ -20,10 +20,19 @@ startBtn.addEventListener('click', (event) => {
     }
 
     function addPhraseToDisplay(arr) {
-        for (let i = 0; i < arr.length; i++) {
-            const phraseArr = getRandomPhraseAsArray(arr[i])
-            return phraseArr;
-        }
+            const phraseUl = document.querySelector('#phrase ul');
+            const li = document.createElement('li');
+            const phraseArr = getRandomPhraseAsArray(arr);
+            for (let i = 0; i < phraseArr.length; i++) {
+                const character = phraseArr[i];
+                if (typeof character === String) {
+                    console.log(character);
+                }
+                // const charLi = li.appendChild(character);
+                // phraseUl.appendChild(charLi);
+            }
+        
     }
+    addPhraseToDisplay(phrases);
 
 });
