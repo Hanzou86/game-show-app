@@ -48,8 +48,9 @@ function checkLetter(btn) {
     const letters = document.querySelectorAll('.letter');
     let matchLetter = null;
     for (let i = 0; i < letters.length; i++) {
+        console.log(letters[i]);
         matchLetter = (letters[i] === btn.textContent);
-        if (letters[i] === btn.textContent) {
+        if (letters[i].textContent === btn.textContent) {
             letters[i].parentNode.className = 'show';
             console.log('hello');
         }
