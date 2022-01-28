@@ -29,6 +29,7 @@ startBtn.addEventListener('click', (event) => {
             const phraseArr = getRandomPhraseAsArray(arr);
             for (let i = 0; i < phraseArr.length; i++) {
                 const character = phraseArr[i];
+                const li = document.createElement('li');
                 li.textContent = character;
                 if (character === ' ') {
                     li.className = 'space';
@@ -36,7 +37,6 @@ startBtn.addEventListener('click', (event) => {
                     li.className = 'letter';
                 }
                 phraseUl.append(li);
-                console.log(li);
             }
         
     }
@@ -44,24 +44,23 @@ startBtn.addEventListener('click', (event) => {
 
 });
 
+function checkLetter(btn) {
+    const letters = document.querySelectorAll('.letter');
+    let matchLetter = null;
+    for (let i = 0; i < letters.length; i++) {
+        matchLetter = (letters[i] === btn.textContent);
+        if (letters[i] === btn.textContent) {
+            letters[i].parentNode.className = 'show';
+            console.log('hello');
+        }
+    }
+    return matchLetter;
+}
 
-
-qwerty.addEventListener('change', (event) => {
+qwerty.addEventListener('click', (event) => {
     const btn = event.target;
     if (btn.tagName === 'BUTTON') {
-        function checkLetter(btn) {
-            const letters = document.querySelectorAll('.letter');
-            for (let i = 0; i < letters.length; i++) {
-                if (letters[i] === btn.textContent) {
-                    const matchLetter = letters[i] === btn.textContent;
-                    matchLetter.parentNode.className = 'show';
-                    return matchLetter;
-                } else {
-                    return null;
-                }
-            }
-        }
-        btn.className = 'chosen';
         checkLetter(btn);
+        btn.className = 'chosen';
     }
 })
