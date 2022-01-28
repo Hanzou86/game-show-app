@@ -1,6 +1,7 @@
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startBtn = document.querySelector('.btn__reset');
+const missed = 0;
 
 const phrases = [
     'Life is like a box of chocolates',
@@ -20,6 +21,7 @@ startBtn.addEventListener('click', (event) => {
         const phraseArr = randomPhrase.split('');
         return phraseArr
     }
+    getRandomPhraseAsArray(phrases);
 
     function addPhraseToDisplay(arr) {
             const phraseUl = document.querySelector('#phrase ul');
@@ -27,13 +29,14 @@ startBtn.addEventListener('click', (event) => {
             const phraseArr = getRandomPhraseAsArray(arr);
             for (let i = 0; i < phraseArr.length; i++) {
                 const character = phraseArr[i];
-                if (character === ' ') {
-                    character.className = 'space';
-                } else {
-                    character.className = 'letter';
-                }
                 li.textContent = character;
-                phraseUl.appendChild(li);
+                if (character === ' ') {
+                    li.className = 'space';
+                } else {
+                    li.className = 'letter';
+                }
+                phraseUl.append(li);
+                console.log(li);
             }
         
     }
@@ -50,7 +53,9 @@ qwerty.addEventListener('change', (event) => {
             const letters = document.querySelectorAll('.letter');
             for (let i = 0; i < letters.length; i++) {
                 if (letters[i] === btn.textContent) {
-                    letters[i].parentNode.className = 'show';
+                    const matchLetter = letters[i] === btn.textContent;
+                    matchLetter.parentNode.className = 'show';
+                    return matchLetter;
                 } else {
                     return null;
                 }
