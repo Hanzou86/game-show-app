@@ -4,11 +4,11 @@ const startBtn = document.querySelector('.btn__reset');
 const missed = 0;
 
 const phrases = [
-    'Life is like a box of chocolates',
-    'Use the force Luke',
-    'Go easy on the Pepsi Fuller',
-    "I'll be back",
-    'In space no one can hear you scream'
+    'life is like a box of chocolates',
+    'use the force luke',
+    'go easy on the pepsi fuller',
+    "i will be back",
+    'in space no one can hear you scream'
 ]
 
 startBtn.addEventListener('click', (event) => {
@@ -49,9 +49,9 @@ function checkLetter(btn) {
     let matchLetter = null;
     for (let i = 0; i < letters.length; i++) {
         console.log(letters[i]);
-        matchLetter = (letters[i] === btn.textContent);
         if (letters[i].textContent === btn.textContent) {
-            letters[i].parentNode.className = 'show';
+            matchLetter = (letters[i] === btn.textContent);
+            letters[i].className += ' show';
             console.log('hello');
         }
     }
