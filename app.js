@@ -1,7 +1,7 @@
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startBtn = document.querySelector('.btn__reset');
-const missed = 0;
+let missed = 0;
 
 const phrases = [
     'life is like a box of chocolates',
@@ -48,11 +48,9 @@ function checkLetter(btn) {
     const letters = document.querySelectorAll('.letter');
     let matchLetter = null;
     for (let i = 0; i < letters.length; i++) {
-        console.log(letters[i]);
         if (letters[i].textContent === btn.textContent) {
             matchLetter = (letters[i] === btn.textContent);
             letters[i].className += ' show';
-            console.log('hello');
         }
     }
     return matchLetter;
@@ -61,7 +59,22 @@ function checkLetter(btn) {
 qwerty.addEventListener('click', (event) => {
     const btn = event.target;
     if (btn.tagName === 'BUTTON') {
-        checkLetter(btn);
+        const tries = document.querySelectorAll('.tries');
+        const letterFound = checkLetter(btn);
+        letterFound;
+        console.log(letterFound);
+        if (letterFound === null) {
+            for (let i = 0; i < tries.length; i++) {
+                if (tries[i].firstChild.src === 'images/lostHeart.png') {
+                    tries[i].nextSibling.firstChild.src = 'images/lostHeart.png';
+                    break;
+            }
+        }
+            tries[0].firstChild.src = 'images/lostHeart.png';
+            missed+= 1;
+            }
+        
         btn.className = 'chosen';
+        btn.disabled = true;
     }
 })
