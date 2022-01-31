@@ -1,6 +1,7 @@
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startBtn = document.querySelector('.btn__reset');
+const startScreen = document.getElementById('overlay');
 let missed = 0;
 
 const phrases = [
@@ -12,7 +13,6 @@ const phrases = [
 ]
 
 startBtn.addEventListener('click', (event) => {
-    const startScreen = document.getElementById('overlay');
 
     startScreen.style.display = 'none';
 
@@ -56,25 +56,30 @@ function checkLetter(btn) {
     return matchLetter;
 }
 
+//find out why lettersShow returns undefined
+
+function checkWin() {
+    const lettersShow = document.querySelectorAll['.show'];
+    const letters = document.querySelectorAll['.letter'];
+    if (lettersShow.length === letters.length) {
+        startScreen.style.display = 'initial';
+    }
+    console.log(lettersShow);
+}
+
 qwerty.addEventListener('click', (event) => {
     const btn = event.target;
     if (btn.tagName === 'BUTTON') {
-        const tries = document.querySelectorAll('.tries');
+        const tries = document.querySelectorAll('.tries img');
         const letterFound = checkLetter(btn);
         letterFound;
-        console.log(letterFound);
         if (letterFound === null) {
-            for (let i = 0; i < tries.length; i++) {
-                if (tries[i].firstChild.src === 'images/lostHeart.png') {
-                    tries[i].nextSibling.firstChild.src = 'images/lostHeart.png';
-                    break;
+            tries[missed].src = 'images/lostHeart.png';
+            missed++;
             }
-        }
-            tries[0].firstChild.src = 'images/lostHeart.png';
-            missed+= 1;
-            }
-        
         btn.className = 'chosen';
         btn.disabled = true;
-    }
+        checkWin();
+        }
 })
+
