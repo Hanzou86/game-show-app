@@ -64,7 +64,7 @@ function checkWin() {
     if (lettersShow.length === letters.length) {
         startScreen.style.display = 'initial';
     }
-    console.log(lettersShow);
+    console.log(letters);
 }
 
 qwerty.addEventListener('click', (event) => {
@@ -79,7 +79,7 @@ qwerty.addEventListener('click', (event) => {
             }
         btn.className = 'chosen';
         btn.disabled = true;
-        checkWin();
+        // checkWin();
         }
 })
 
