@@ -100,7 +100,9 @@ function resetGame() {
         tries[i].src = 'images/liveHeart.png'; 
     }
     overlay.style.display = 'none';
-    result.remove(result);
+    if (result) {
+        result.remove(result);
+    }
     missed = 0;
     addPhraseToDisplay(phrases)
 
